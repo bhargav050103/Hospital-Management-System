@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="depstyle.css" type="text/css">
+  <title>KIMS HOSPITALS</title>
+</head>
+<body>
+  <header>
+    <h2>KIMS HOSPITALS</h2>
+    <marquee>🚑 24/7 HELPLINE SERVICE AVAILABLE 🚑</marquee>
+  </header>
+
+  <div class="container">
+    <h1>🏥 Add a Department</h1>
+    <form name="dept" onsubmit="return val()">
+      <table>
+        <tr>
+          <td>Department Name:</td>
+          <td><input type="text" name="dname" required /></td>
+        </tr>
+        <tr>
+          <td>Department Description:</td>
+          <td><textarea name="desc" required></textarea></td>
+        </tr>
+        <tr>
+          <td>Number of Doctors:</td>
+          <td><input type="number" name="No:ofDoctors" required /></td>
+        </tr>
+        <tr>
+          <td>Number of General Rooms:</td>
+          <td><input type="number" name="No:ofGeneralRooms" required /></td>
+        </tr>
+        <tr>
+          <td>Number of AC Rooms:</td>
+          <td><input type="number" name="No:ofACrooms" required /></td>
+        </tr>
+        <tr>
+          <td>Number of Non-AC Rooms:</td>
+          <td><input type="number" name="No:ofNonRooms" required /></td>
+        </tr>
+        <tr>
+          <td>Number of ICU:</td>
+          <td><input type="number" name="No:ofICU" required /></td>
+        </tr>
+        <tr>
+          <td>Cost of General Room:</td>
+          <td><input type="text" name="cogr" required /></td>
+        </tr>
+        <tr>
+          <td>Cost of AC Rooms:</td>
+          <td><input type="text" name="coar" required /></td>
+        </tr>
+        <tr>
+          <td>Cost of Non-AC Rooms:</td>
+          <td><input type="text" name="conar" required /></td>
+        </tr>
+        <tr>
+          <td>Cost of ICU:</td>
+          <td><input type="text" name="coicu" required /></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="center">
+            <input name="submit" type="submit" value="Add Department">
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+
+  <script>
+    function val() {
+      var letters = /^[A-Za-z\s]+$/;
+      var decno = /^\d+(\.\d{1,2})?$/;
+      var dn = document.dept.dname.value;
+
+      if (dn == null || dn == "") {
+        alert("Enter a valid department name");
+        return false;
+      } else if (dn.length > 30) {
+        alert("Department name should be less than 30 characters");
+        return false;
+      } else if (!dn.match(letters)) {
+        alert("Department name should only contain alphabets");
+        return false;
+      }
+
+      var desc = document.dept.desc.value;
+      if (desc.length > 50) {
+        alert("Description should be less than 50 characters");
+        return false;
+      }
+
+      var costs = ["cogr", "coar", "conar", "coicu"];
+      for (var i = 0; i < costs.length; i++) {
+        var cost = document.dept[costs[i]].value;
+        if (!cost.match(decno)) {
+          alert("Cost fields should contain numbers with up to 2 decimal places");
+          return false;
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
